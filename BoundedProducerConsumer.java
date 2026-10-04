@@ -45,23 +45,28 @@ import java.util.concurrent.locks.ReentrantLock;
  * ReentrantLock + two Condition objects (notFull, notEmpty) — more precise signaling, preferred in interviews
  * Semaphore pair — one counting empty slots, one counting full slots
  *
+ * Generics three steps :
+ * 1. Boundedproducerconsumer --> Boundedproducerconsumer<T>
+ * 2. Replace Integer/int with T
+ * 3. like Queue<Integer> --> Queue<T>
+ *
  */
 
-public class BoundedProducerConsumer {
+public class BoundedProducerConsumer<T> {
 
-    Queue<Integer> buffer;
+    Queue<T> buffer;
     Integer capacity;
-    Lock lock;
+//    Lock lock;
     Object obj;
 
     public BoundedProducerConsumer(Integer capacity) {
         this.buffer = new LinkedList<>();
         this.capacity = capacity;
-        this.lock = new ReentrantLock();
+//        this.lock = new ReentrantLock();
         this.obj = new Object();
     }
 
-    void put(int value) throws InterruptedException {
+    void put(T value) throws InterruptedException {
 
        synchronized (obj){
             while(capacity.equals(buffer.size())) {
@@ -75,7 +80,7 @@ public class BoundedProducerConsumer {
         //if capacity is less
     }
 
-    int get() throws InterruptedException{
+    T get() throws InterruptedException{
         synchronized (obj)
         {
             while(buffer.size() == 0)
@@ -83,14 +88,14 @@ public class BoundedProducerConsumer {
                 obj.wait();
             }
             Thread.sleep(200);
-            int val = buffer.poll();
+            T val = buffer.poll();
             obj.notifyAll();
             return val;
         }
     }
 
     public static void main(String[] args) {
-        BoundedProducerConsumer boundedProducerConsumer = new BoundedProducerConsumer(5);
+        BoundedProducerConsumer boundedProducerConsumer = new BoundedProducerConsumer<Integer>(5);
         Thread t1 = new Thread(()->{
             for(int i=0;i<100;i++){
                 try {
