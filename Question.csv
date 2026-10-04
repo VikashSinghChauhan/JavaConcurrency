@@ -1,0 +1,16 @@
+#,Problem,Key Concept Tested
+1,Producer-Consumer with bounded queue,"wait/notify, BlockingQueue, backpressure"
+2,Print numbers alternately with 2 threads (odd/even),"synchronized, wait/notify"
+3,"Print sequence using N threads (T1 prints 1, T2 prints 2... repeat)","Lock + Condition, Semaphore"
+4,Dining Philosophers,"Deadlock avoidance, resource ordering"
+5,Read-Write Lock (implement from scratch),"Starvation, fairness, ReentrantReadWriteLock"
+6,Phased task execution (your problem above),"CyclicBarrier, Phaser"
+7,Rate Limiter (token bucket / sliding window),"Semaphore, timing, ScheduledExecutorService"
+8,"Thread-safe singleton (DCL, enum, holder)","volatile, happens-before"
+9,Implement BlockingQueue from scratch,ReentrantLock + Condition
+10,Merge results from parallel API calls,"CompletableFuture, CountDownLatch"
+11,Deadlock detection / create-then-fix a deadlock,"Lock ordering, tryLock"
+12,Custom thread pool (implement ExecutorService),"Work queue, thread lifecycle"
+13,H2O problem (2 hydrogen + 1 oxygen threads form water),"Semaphore, CyclicBarrier"
+14,Traffic light / intersection controller,State machine + synchronization
+15,Async task scheduler with dependencies (like a build system),Topological sort + CountDownLatch / CompletableFuture
